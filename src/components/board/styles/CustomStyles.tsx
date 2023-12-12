@@ -19,12 +19,12 @@ export const StyledTextArea = styled(InputBase)`
 `;
 
 export const StyledButton = styled(Button)(({ theme }) => ({
-    backgroundColor: '#31304D',
-    color: '#fff',
+    backgroundColor: '#0DB5F9',
+    color: '#FFFFFF',
     borderRadius: '0.5rem',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     padding: '0.5rem',
-    textDecoration: 'none',
+    textTransform: 'none',
     '&:hover': {
         backgroundColor: theme.palette.primary.dark,
     },
@@ -36,12 +36,12 @@ export const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export const StyledDeleteButton = styled(Button)(({ theme }) => ({
-    backgroundColor: '#FF1055',
+    backgroundColor: '#FF7E04',
     color: '#fff',
     borderRadius: '0.5rem',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     padding: '0.5rem',
-    textDecoration: 'none',
+    textTransform: 'none',
     '&:hover': {
         backgroundColor: theme.palette.primary.light,
     },

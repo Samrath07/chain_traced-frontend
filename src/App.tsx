@@ -1,12 +1,10 @@
 import './App.css'
-import { MessageLayout } from './components/board/MessageLayout'
+import { Message } from './components/board/Message'
 
 function App() {
 
   return (
-    <>
-      <MessageLayout/>
-    </>
+      <Message/>
   )
 }
 
