@@ -1,14 +1,15 @@
 import { Box } from "@mui/material"
 import { Header } from "./Header"
 import { StyledButton, StyledTextArea } from "./styles/CustomStyles"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { StoreMessages } from "./StoreMessage"
+import { MessageResponse } from "./constants"
 
 export const Message = () => {
 
     const [addMessage, setAddMessage] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
-    const [storeMessage, setStoreMessage] = useState<string[]>([]);
+    const [storeMessage, setStoreMessage] = useState<MessageResponse[]>([]);
 
     const handleAddPost = () => {
         setAddMessage(true);
@@ -16,11 +17,33 @@ export const Message = () => {
     const handleMessageInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value)
     }
-    const handleMessageSubmit = () => {
+    const handleMessageSubmit = async () => {
+        await fetch('http://localhost:8080/messages', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify({
+                Text: message,
+                Author: 'Shivam Srivastava'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
         setAddMessage(false);
         setMessage('');
-        setStoreMessage([...storeMessage, message]);
+        // setStoreMessage([...storeMessage, message]);
     }
+
+    useEffect(() => {
+        async function getMessages() {
+            (await fetch('http://localhost:8080/messages')).json().then((data) => {
+                setStoreMessage(data);
+            }
+            )
+        }
+        getMessages();
+    }, [])
 
     return (
         <>
@@ -44,9 +67,11 @@ export const Message = () => {
                                 handleMessageInput(event)
                             }} />
                         </Box>
-                        <Box sx={{ textAlign: 'right', my: 3 }}>
-                            <StyledButton variant="contained" onClick={handleMessageSubmit} disabled={message === ''}>Post</StyledButton>
-                        </Box>
+                        {message !== '' &&
+                            <Box sx={{ textAlign: 'right', my: 3 }}>
+                                <StyledButton variant="contained" onClick={handleMessageSubmit} >Post</StyledButton>
+                            </Box>
+                        }
                     </Box>
                 }
             </Box>
