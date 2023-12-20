@@ -70,7 +70,7 @@ export const Message = () => {
                         </Box>
                         {message !== '' &&
                             <Box sx={{ textAlign: 'right', my: 3 }}>
-                                <StyledButton variant="contained" onClick={handleMessageSubmit} >Post</StyledButton>
+                                <StyledButton variant="contained" onClick={handleMessageSubmit}>Post</StyledButton>
                             </Box>
                         }
                     </Box>

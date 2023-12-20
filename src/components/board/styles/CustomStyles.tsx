@@ -31,7 +31,7 @@ export const StyledButton = styled(Button)(({ theme }) => ({
     '&:focus': {
         outline: 'none',
     },
-    width: '20vh',
+    width: '25vh',
     marginRight: '1rem'
 }));
 
@@ -48,6 +48,6 @@ export const StyledDeleteButton = styled(Button)(({ theme }) => ({
     '&:focus': {
         outline: 'none',
     },
-    width: '20vh',
+    width: '25vh',
     marginRight: '1rem'
 }));

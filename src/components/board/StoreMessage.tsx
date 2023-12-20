@@ -13,7 +13,7 @@ export const StoreMessages = ({ storeMessages, setStoreMessages }: {
             method: 'DELETE',
             mode: 'cors',
         })
-        // setStoreMessages(storeMessages.filter((item) => item.id !== id))
+        setStoreMessages(storeMessages.filter((item) => item.id !== id))
     }
 
 
