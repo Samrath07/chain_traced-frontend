@@ -28,11 +28,12 @@ export const Message = () => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
-
+        }).then((response) => response.json()).then((data) => {
+            setStoreMessage([...storeMessage, data]);
+        }
+        )
         setAddMessage(false);
         setMessage('');
-        // setStoreMessage([...storeMessage, message]);
     }
 
     useEffect(() => {
