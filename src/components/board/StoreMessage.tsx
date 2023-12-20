@@ -1,15 +1,19 @@
 import { Box, Typography } from "@mui/material"
 import { StyledDeleteButton } from "./styles/CustomStyles"
 import { Dispatch } from "react"
+import { MessageResponse } from "./constants"
 
 export const StoreMessages = ({ storeMessages, setStoreMessages }: {
-    storeMessages: string[],
-    setStoreMessages: Dispatch<React.SetStateAction<string[]>>
+    storeMessages: MessageResponse[],
+    setStoreMessages: Dispatch<React.SetStateAction<MessageResponse[]>>
 }) => {
 
-    const handleDeleteMessage = (index: number) => {
-        const newStoreMessages = storeMessages.filter((_item, i) => i !== index);
-        setStoreMessages(newStoreMessages);
+    const handleDeleteMessage = async (id: string) => {
+        await fetch(`http://localhost:8080/messages/${id}`, {
+            method: 'DELETE',
+            mode: 'cors',
+        })
+        // setStoreMessages(storeMessages.filter((item) => item.id !== id))
     }
 
 
@@ -28,12 +32,13 @@ export const StoreMessages = ({ storeMessages, setStoreMessages }: {
                             justifyContent: 'space-between'
                         }}>
                         <Box>
-                            <Typography variant="h6">{item}</Typography>
+                            <Typography variant="h6">{item.author}</Typography>
+                            <Typography variant="h5">{item.text}</Typography>
                         </Box>
                         <Box>
                             <StyledDeleteButton
                                 variant="contained"
-                                onClick={() => handleDeleteMessage(index)}
+                                onClick={() => handleDeleteMessage(item.id)}
                             >
                                 Delete
                             </StyledDeleteButton>
