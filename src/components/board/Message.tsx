@@ -28,11 +28,12 @@ export const Message = () => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
-
+        }).then((response) => response.json()).then((data) => {
+            setStoreMessage([...storeMessage, data]);
+        }
+        )
         setAddMessage(false);
         setMessage('');
-        // setStoreMessage([...storeMessage, message]);
     }
 
     useEffect(() => {
@@ -69,7 +70,7 @@ export const Message = () => {
                         </Box>
                         {message !== '' &&
                             <Box sx={{ textAlign: 'right', my: 3 }}>
-                                <StyledButton variant="contained" onClick={handleMessageSubmit} >Post</StyledButton>
+                                <StyledButton variant="contained" onClick={handleMessageSubmit}>Post</StyledButton>
                             </Box>
                         }
                     </Box>
