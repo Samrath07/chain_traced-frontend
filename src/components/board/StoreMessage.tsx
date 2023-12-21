@@ -10,6 +10,7 @@ export const StoreMessages = ({
   storeMessages: MessageResponse[];
   setStoreMessages: Dispatch<React.SetStateAction<MessageResponse[]>>;
 }) => {
+
   const handleDeleteMessage = async (id: string) => {
     await fetch(`http://localhost:8080/messages/${id}`, {
       method: 'DELETE',
@@ -34,8 +35,8 @@ export const StoreMessages = ({
             }}
           >
             <Box>
-              <Typography variant='h6'>{item.author}</Typography>
-              <Typography variant='h5'>{item.text}</Typography>
+              <Typography variant='h5'>{item.author}</Typography>
+              <Typography variant='h4'>{item.text}</Typography>
             </Box>
             <Box>
               <StyledDeleteButton
