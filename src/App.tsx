@@ -1,11 +1,8 @@
-import './App.css'
-import { Message } from './components/board/Message'
+import './App.css';
+import { Message } from './components/board/Message';
 
 function App() {
-
-  return (
-      <Message/>
-  )
+  return <Message />;
 }
 
-export default App
+export default App;
