@@ -34,7 +34,8 @@ export const Message = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setStoreMessage([...storeMessage, data]);
+        const newData = { ...data, replyMode: false };
+        setStoreMessage([...storeMessage, newData]);
       });
     setAddMessage(false);
     setMessage('');
@@ -61,7 +62,7 @@ export const Message = () => {
             justifyContent: 'space-between',
           }}
         >
-          <Header authorName='Shivam Srivastava' />
+          <Header authorName='Anonymous User' />
           {/* <Message /> */}
           {!addMessage && (
             <StyledButton variant='contained' onClick={handleAddPost}>
