@@ -1,7 +1,10 @@
-import { Box, Typography } from '@mui/material';
-import { StyledButton, StyledDeleteButton, StyledTextArea } from './styles/CustomStyles';
+import { Box, IconButton, Typography } from '@mui/material';
+import { StyledTextArea } from './styles/CustomStyles';
 import { Dispatch, useState } from 'react';
 import { MessageResponse } from './constants';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import SendIcon from '@mui/icons-material/Send';
+import QuickreplyOutlinedIcon from '@mui/icons-material/QuickreplyOutlined';
 
 export const StoreMessages = ({
   storeMessages,
@@ -81,25 +84,25 @@ export const StoreMessages = ({
                 </Box>
                 <Box>
                   {!replyMode && (
-                    <StyledButton
-                      variant='contained'
+                    <IconButton
                       onClick={() => handleReplyMode(item.id)}
-                      sx={{ backgroundColor: '#001493' }}
+                      sx={{ width: '50%', height: '50%', color: '#3559E0' }}
                     >
-                      Reply
-                    </StyledButton>
+                      <QuickreplyOutlinedIcon />
+                    </IconButton>
                   )}
-                  <StyledDeleteButton
-                    variant='contained'
+                  <IconButton
+                    aria-label='delete'
                     onClick={() => handleDeleteMessage(item.id)}
+                    sx={{ color: '#BF3131' }}
                   >
-                    Delete
-                  </StyledDeleteButton>
-
+                    <DeleteForeverIcon />
+                  </IconButton>
                 </Box>
               </Box>
             }
-            {item.replyMode &&
+            {
+              item.replyMode &&
               <Box
                 sx={{
                   backgroundColor: '#7BD3EA',
@@ -143,18 +146,17 @@ export const StoreMessages = ({
                   onChange={(event) => setReply(event.target.value)}
                 />
                 {reply !== '' &&
-                  <StyledButton
-                    variant='contained'
-                    sx={{ width: '10%', height: '30%' }}
+                  <IconButton
+                    sx={{ color: '#3559E0' }}
                     onClick={() => handleReply(item.id)}
                   >
-                    Reply
-                  </StyledButton>
+                    <SendIcon />
+                  </IconButton>
                 }
               </Box>
             )}
 
-          </Box>
+          </Box >
         );
       })}
     </>
